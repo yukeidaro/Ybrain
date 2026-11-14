@@ -90,6 +90,7 @@ import f87 from '../../../skills/strategic-reading/SKILL.md' with { type: 'text'
 import f88 from '../../../skills/two-tier-extraction/SKILL.md' with { type: 'text' };
 import f89 from '../../../skills/voice-note-ingest/SKILL.md' with { type: 'text' };
 import f90 from '../../../skills/webhook-transforms/SKILL.md' with { type: 'text' };
+import f91 from '../../../skills/weekly-reflection/SKILL.md' with { type: 'text' };
 
 export interface BundledSkillMeta { name: string; audience: 'owner' | 'downstream'; assets: string[] }
 
@@ -774,6 +775,14 @@ export const BUNDLED_SKILLS: readonly BundledSkillMeta[] = [
     "assets": [
       "conventions/agent-operator-protocol.md"
     ]
+  },
+  {
+    "name": "weekly-reflection",
+    "audience": "downstream",
+    "assets": [
+      "conventions/agent-operator-protocol.md",
+      "conventions/brain-first.md"
+    ]
   }
 ];
 
@@ -869,4 +878,5 @@ export const BUNDLED_SKILL_FILES: Readonly<Record<string, string>> = {
   "two-tier-extraction/SKILL.md": f88,
   "voice-note-ingest/SKILL.md": f89,
   "webhook-transforms/SKILL.md": f90,
+  "weekly-reflection/SKILL.md": f91,
 };

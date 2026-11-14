@@ -1,0 +1,13 @@
+// Routing eval fixtures for skills/weekly-reflection. Positive cases are the
+// weekly, evidence-backed interview over past sessions. Negative cases protect
+// correction-pipeline (one live correction), soul-audit (identity interview),
+// gbrain-advisor (brain health checkup) and conversation-archive (importing logs).
+{"intent":"Run my weekly reflection","expected_skill":"weekly-reflection"}
+{"intent":"Review my week and ask me what you should remember","expected_skill":"weekly-reflection"}
+{"intent":"What should you learn from this week's sessions?","expected_skill":"weekly-reflection"}
+{"intent":"Interview me about this week so your memory stays current","expected_skill":"weekly-reflection"}
+{"intent":"Please update your memory from my sessions, then ask me what changed","expected_skill":"weekly-reflection"}
+{"intent":"That's wrong, I never said the launch was in March","expected_skill":"correction-pipeline"}
+{"intent":"Change my agent's personality to be more direct","expected_skill":"soul-audit"}
+{"intent":"Weekly brain checkup: is my brain set up right?","expected_skill":"gbrain-advisor"}
+{"intent":"Import my claude export into the brain","expected_skill":"conversation-archive"}

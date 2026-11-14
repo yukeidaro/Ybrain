@@ -81,6 +81,7 @@ off until the user opts in, and paid enrichment is a separate choice.
 | "resolve before asking", "before asking the user", "unidentified contact", "unknown relationship" | `skills/resolve-before-asking/SKILL.md` |
 | "move this to brain", "migrate to brain", "copy these files into the brain", "is this already in the brain" | `skills/brain-ingest-gate/SKILL.md` |
 | "that's wrong", "that's not true", "I never said that", "where did you get that" | `skills/correction-pipeline/SKILL.md` |
+| "weekly reflection", "review my week", "what should you learn from this week", "update your memory from my sessions", "interview me about this week" | `skills/weekly-reflection/SKILL.md` |
 | "company brain", "team brain", "brainify", "sanitize the brain" | `skills/company-brainify/SKILL.md` |
 | "citation graph", "citation graph ingest", "typed citation graph", "build a reference graph" | `skills/citation-graph-ingest/SKILL.md` |
 | "give me the link", "where is the page", "why does this link 404", "brain link discipline" | `skills/brain-link-discipline/SKILL.md` |
@@ -207,6 +208,7 @@ When multiple skills could match:
 5. When in doubt, ask the user (see `skills/ask-user/SKILL.md` for the choice-gate pattern)
 6. Publication/feed URL or a whole blog archive → blog-ingest; a single article/tweet URL → idea-ingest; video/audio/PDF → media-ingest; AI-chat export FILE or session transcripts → conversation-archive; CONNECT an account for live/automatic sync ("connect my chatgpt", "keep synced") → chat-connectors
 7. Identity/personality content (who the agent is, voice, persona) → soul-audit; token/structure hygiene of the always-loaded context stack → context-audit
+7a. A single correction the user just made → correction-pipeline; the weekly batch review of past sessions that asks the user what to remember or change → weekly-reflection (it hands individual corrections to correction-pipeline and identity answers to soul-audit)
 8. "Why is X slow/stale" measurement-first ops triage → measure-before-you-fix; code debugging ("why is this function broken") → investigate (GStack)
 9. GBrain MCP server/client OAuth, dashboard login, or client permissions → mcp-access; importing chat account history (including "chatgpt oauth") → chat-connectors. An existing hosted endpoint does not require local initialization.
 10. "connect <agent> to my brain" when the brain runs on the user's own machine and is not already reachable → remote-mcp (publish over Tailscale), then mcp-access / hosted access for the intended harness's native OAuth or private machine handoff. When the brain is ALREADY served over HTTPS by other means or hosted elsewhere, use mcp-access / hosted access against that endpoint; no `gbrain mcp expose`. "connect my chatgpt" / "connect my claude account" (pull an account's chat history INTO the brain) → chat-connectors; "connect gmail" / "connect google" → google-loops.

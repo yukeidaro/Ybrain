@@ -1,5 +1,10 @@
 <h1><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/brand/gbrain-wordmark-light.svg"><img src="docs/images/brand/gbrain-wordmark.svg" alt="GBrain" height="52"></picture></h1>
 
+> [!NOTE]
+> **This is a fork of [garrytan/gbrain](https://github.com/garrytan/gbrain)** (MIT). It adds one skill, [`weekly-reflection`](skills/weekly-reflection/SKILL.md): once a week the agent reads your past week's Claude Code sessions and meeting/personal notes, asks you a few evidence-backed questions one at a time, and updates memory and skills only with the answers you approve. Everything else follows upstream.
+>
+> **このリポジトリは garrytan/gbrain のフォークです。** 追加したのは [`weekly-reflection`](skills/weekly-reflection/SKILL.md) スキル 1 つです。週に 1 回、その週の Claude Code の会話と会議メモ・自分のメモを読み、根拠を添えた質問を 1 問ずつします。承認した答えだけで、メモリとスキルを更新します。それ以外は本家と同じです。
+
 **Give the agent you already use a memory you control.** GBrain stores explicit facts with their sources, supports corrections and withdrawal, and makes the same memory available across your agents. Start with keyless memory and keyword retrieval; add semantic search, synthesis, and background enrichment when you need them.
 
 GBrain is MIT-licensed and free to self-host; gbrain.io is optional paid hosting.

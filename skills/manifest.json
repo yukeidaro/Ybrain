@@ -260,6 +260,11 @@
       "description": "Proactive 'make the most of gbrain' coaching. Runs gbrain advisor on a cadence and pings the user with the top high-leverage actions for their brain. Read-only; always asks before fixing."
     },
     {
+      "name": "weekly-reflection",
+      "path": "weekly-reflection/SKILL.md",
+      "description": "Weekly evidence-backed interview over the past week's agent sessions and notes. Asks the user a few questions one at a time and applies only approved answers: facts via remember, skill edits via skillify."
+    },
+    {
       "name": "brain-taxonomist",
       "path": "brain-taxonomist/SKILL.md",
       "description": "Filing gate consulted before every brain page write. Reads the active schema pack via `gbrain schema show --json`; emits a recommended filing path with reasoning."

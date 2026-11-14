@@ -103,7 +103,8 @@
     "skills/testing",
     "skills/two-tier-extraction",
     "skills/voice-note-ingest",
-    "skills/webhook-transforms"
+    "skills/webhook-transforms",
+    "skills/weekly-reflection"
   ],
   "shared_deps": [
     "skills/conventions",
