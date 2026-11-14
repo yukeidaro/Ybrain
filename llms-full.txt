@@ -4368,12 +4368,115 @@ These apply to ALL brain-writing skills:
 
 Source: https://raw.githubusercontent.com/garrytan/gbrain/master/README.md
 
+# Ybrain
+
+**A memory that learns from your real week, and asks before it learns.**
+
+Ybrain is a fork of [GBrain](https://github.com/garrytan/gbrain) (MIT). It keeps
+everything GBrain does and adds one skill, [`weekly-reflection`](skills/weekly-reflection/SKILL.md):
+once a week your agent reads what actually happened in your sessions and notes,
+asks you a few short questions, and updates its memory and skills only with the
+answers you approve.
+
+Most agent memory either forgets, or quietly fills up with guesses. Ybrain takes
+a third path: **evidence from real use, confirmed by you, on a weekly rhythm.**
+
+## How a weekly reflection works
+
+1. **Reads last week's record** so it never re-asks what you skipped or declined.
+2. **Imports your new Claude Code sessions** (`gbrain transcripts ingest --format claude-code --since last`).
+3. **Gathers the week**: sessions, meeting notes and personal notes from the last 7 days.
+4. **Finds what is worth learning**, in this order:
+   - corrections you made to the agent,
+   - instructions you repeated in two or more sessions,
+   - statements that contradict what the brain already stores,
+   - skills that were skipped, misrouted or overridden.
+5. **Interviews you**: at most 5 questions, one at a time, each with the evidence it came from.
+6. **Applies only your "yes"**: facts via `remember`, corrections via `correction-pipeline`,
+   identity answers via `soul-audit`, skill edits via `skillify` (an edit may not score
+   below the previous version).
+7. **Writes a weekly record** at `daily/reflections/YYYY-Www`: what was asked, the answers,
+   what changed, what was skipped.
+
+A question looks like this:
+
+```
+🪞 Weekly reflection (2/4)
+
+Evidence: in 3 sessions this week (conversations/sessions/2026-11-10-…, …)
+you asked for answers in a table before prose.
+
+Should I remember this as a standing preference?
+1. Yes, always — save it as a preference
+2. Only for reports — save it with that scope
+3. No — it was situational
+4. Skip — ask me another week
+```
+
+## Ground rules
+
+- **No evidence, no question.** Every question cites the page it came from.
+- **You decide.** Silence or "skip" changes nothing. Nothing is saved without an explicit yes.
+- **Bounded.** Five questions a week at most. A skipped item waits 4 weeks; a declined item is never asked again.
+- **Your data stays yours.** The brain runs on your machine (PGLite, no server, no API key needed to start).
+  Skills stay generic; your specifics live only in your brain pages.
+
+## Install (Claude Code on macOS or Linux)
+
+```bash
+# 1. Bun (skip if Bun 1.4.4+ is installed)
+curl -fsSL https://bun.sh/install | bash
+export PATH="$HOME/.bun/bin:$PATH"
+
+# 2. The Ybrain CLI (never `npm install -g gbrain`: that is an unrelated package)
+bun install -g github:yukeidaro/Ybrain
+
+# 3. A local, keyless brain
+gbrain init --pglite --no-embedding
+
+# 4. Connect Claude Code
+gbrain setup claude-code
+
+# 5. Bring in your past Claude Code sessions
+gbrain transcripts ingest --format claude-code --all
+```
+
+Prefer the plugin? In Claude Code run `/plugin marketplace add yukeidaro/Ybrain`
+and `/plugin install gbrain@gbrain`. Install exactly one gbrain plugin per machine.
+
+Restart Claude Code after setup. Full prerequisites and recovery steps are in
+[INSTALL_FOR_AGENTS.md](INSTALL_FOR_AGENTS.md).
+
+## Use it
+
+**Say to your agent:** *"run my weekly reflection"*
+
+**Say to your agent:** *"review my week and interview me about it"*
+
+**Say to your agent:** *"what should you learn from this week"*
+
+To make it weekly, schedule that first prompt in your agent (for example a
+Claude Code scheduled task every Friday afternoon). The reflection is an
+interview, so it runs where you can answer. Agents with a message channel can
+use the cron recipe in the [skill](skills/weekly-reflection/SKILL.md#weekly-schedule).
+
+## Staying current with GBrain
+
+Ybrain tracks upstream. On GitHub, open this repository and press
+**Sync fork → Update branch**. The fork changes only the skill files, their
+registrations and this introduction, so syncs rarely conflict. If generated
+files such as `skills/skills.lock.json` conflict, take upstream's version and
+run `bun run regen:all`.
+
+## License
+
+MIT, same as GBrain. Copyright for the original work remains with its authors.
+
+---
+
 <h1><picture><source media="(prefers-color-scheme: dark)" srcset="docs/images/brand/gbrain-wordmark-light.svg"><img src="docs/images/brand/gbrain-wordmark.svg" alt="GBrain" height="52"></picture></h1>
 
-> [!NOTE]
-> **This is a fork of [garrytan/gbrain](https://github.com/garrytan/gbrain)** (MIT). It adds one skill, [`weekly-reflection`](skills/weekly-reflection/SKILL.md): once a week the agent reads your past week's Claude Code sessions and meeting/personal notes, asks you a few evidence-backed questions one at a time, and updates memory and skills only with the answers you approve. Everything else follows upstream.
->
-> **このリポジトリは garrytan/gbrain のフォークです。** 追加したのは [`weekly-reflection`](skills/weekly-reflection/SKILL.md) スキル 1 つです。週に 1 回、その週の Claude Code の会話と会議メモ・自分のメモを読み、根拠を添えた質問を 1 問ずつします。承認した答えだけで、メモリとスキルを更新します。それ以外は本家と同じです。
+*Upstream GBrain README follows.*
 
 **Give the agent you already use a memory you control.** GBrain stores explicit facts with their sources, supports corrections and withdrawal, and makes the same memory available across your agents. Start with keyless memory and keyword retrieval; add semantic search, synthesis, and background enrichment when you need them.
 
