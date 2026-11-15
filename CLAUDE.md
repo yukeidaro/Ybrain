@@ -514,3 +514,5 @@ ordinary memory writes never imply skill editing or script execution. Native rou
 installation is not proof of native use. Read
 [shared brain skills](docs/guides/shared-brain-skills.md) and its
 [key-file contracts](docs/architecture/key-files/shared-skills.md) before changing this lifecycle.
+
+Before a PR, read docs/PR_JA.md.
