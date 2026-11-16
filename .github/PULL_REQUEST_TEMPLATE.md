@@ -1,42 +1,37 @@
-<!-- Title format (IRON RULE): vMAJOR.MINOR.PATCH.MICRO <type>(<scope>): <summary> (#issue) -->
-
-## What
-
-<!-- One paragraph: the user-visible behavior change and the issue it fixes. -->
-
-## Why
-
-<!-- The failure mode this closes. Link the issue. -->
-
-## Discrimination test (required for every fix — #3665)
-
 <!--
-A fix's test is only worth anything if it FAILS without the fix. Fill in the
-one-line result of actually checking that. The helper does it in one command:
-
-    bash scripts/check-test-discriminates.sh <test-file> <source-file> [...]
-
-It reverts the source file(s) to the pre-fix state, runs the test file,
-requires >=1 executed test to FAIL (a crash/missing-file non-zero exit does
-not count — see the script's exit-code contract), restores, and prints the
-line below for you. Tests that pass both ways are worse than no test: they
-inflate reviewer confidence, cost CI time forever, and keep passing after a
-future refactor breaks the behavior.
-
-Delete this section ONLY for pure-docs / pure-refactor PRs with no behavior
-change to pin.
+このテンプレートは、PRを作るAI（Claude Code / Copilot など）も人も同じように埋めます。
+読む人（レビュアー）が「コードを読む前に」判断できることが目的です。
 -->
 
-Discrimination test: reverted `<source file(s)>` to `<ref>`, ran `<test file>` → `N pass / M fail`. Restored → all pass.
+## 目的（なぜこの変更が必要か）
+<!-- 1〜3行で。関連する Issue があればリンク -->
 
-## Verification
+## 変更内容（何をしたか）
+<!-- 専門用語を使う場合は、かっこ書きで一言説明を添える -->
+-
 
-<!--
-If any message/doc this PR adds tells the user to run a command to verify
-something, paste the output of that verification against a system in the
-BROKEN state (the #3697 class: remediation text that lies). Otherwise delete.
--->
+## 設計判断と、選ばなかった案
+<!-- どう作るかで迷った点と、その理由。他の案を選ばなかった理由も書く -->
+- 採用した方法:
+- 検討した他の案と、選ばなかった理由:
 
-## Tests
+## 危険度
+<!-- 1つだけ残して、他は消す -->
+- [ ] 高: 認証・決済・データ削除・DB構造・秘密情報・インフラ・CI設定に触れる
+- [ ] 中: 機能追加やロジックの変更
+- [ ] 低: 文言・ドキュメント・テスト追加・依存関係の小さな更新
 
-<!-- Test files touched/added, and the local run result (redirect to a file, check the exit code — never pipe through tail). -->
+## 影響範囲
+<!-- この変更で動きが変わる画面・API・処理。壊れたときに気づける場所 -->
+
+## 確認方法
+<!-- どうテストしたか。自動テスト名、手で確認した手順 -->
+- [ ] 自動テストが通る
+- [ ] 手で動作を確認した（手順: ）
+
+## レビュアーに判断してほしいこと（最大3つ）
+<!-- 「はい／いいえ」か選択肢で答えられる質問の形にする -->
+1.
+
+## 戻し方
+<!-- 問題が起きたときの戻し方。revert だけで済むか、データの修復が必要か -->
